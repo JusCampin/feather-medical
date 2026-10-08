@@ -104,6 +104,11 @@ CreateThread(function()
                 else
                     lethalSamples = 0
                 end
+                -- Publish only persisted snapshots; alive recovery is exposed
+                -- after the acknowledgment succeeds, never after resurrection alone.
+                if matches(expected) then
+                    MedicalClientLifecycle.Publish(condition, expected)
+                end
                 show(condition)
                 if condition and lastPrinted ~= condition.lifeState .. ':' .. condition.revision then
                     lastPrinted = condition.lifeState .. ':' .. condition.revision

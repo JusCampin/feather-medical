@@ -32,6 +32,7 @@ server_scripts {
 }
 
 client_scripts {
+    'client/lifecycle.lua',
     'client/observer.lua'
 }
 
